@@ -25,4 +25,8 @@ public class ExtendHandlerException extends ApiLogException{
     public ExtendHandlerException(Throwable e) {
         super(e);
     }
+
+    public ExtendHandlerException(ErrorCode errorCode,Throwable e) {
+        super(errorCode,e);
+    }
 }

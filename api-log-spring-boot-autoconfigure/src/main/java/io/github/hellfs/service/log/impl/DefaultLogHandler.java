@@ -54,6 +54,7 @@ public class DefaultLogHandler extends LoggerObject implements LogHandler {
         String beforeFormat = StringUtils.isNotEmpty(apiLog.beforeMessageFormat()) ?
                 apiLog.beforeMessageFormat() : beforeProperties.getMessageFormat();
 
+        builder = new StringBuilder();
         List<Object> placeholderData = this.handler(logHandlerParams, beforeFormat, builder);
 
         logger.info(builder.toString(),placeholderData.toArray());
@@ -66,7 +67,7 @@ public class DefaultLogHandler extends LoggerObject implements LogHandler {
         }
 
         ApiLog apiLog = logHandlerParams.getApiLog();
-        boolean executionTime = apiLog.executionTime();
+        boolean isExecutionTime = apiLog.isExecutionTime();
 
         long executeTime = logHandlerParams.getExecuteTime();
 
@@ -77,7 +78,7 @@ public class DefaultLogHandler extends LoggerObject implements LogHandler {
         List<Object> placeholderData = this.handler(logHandlerParams, afterReturningFormat, builder);
 
         //是否打印执行时间
-        if(executionTime || properties.isExecutionTime()){
+        if(isExecutionTime || properties.isExecutionTime()){
             builder.append(EXECUTE_TIME_MESSAGE_FORMAT);
             placeholderData.add(executeTime);
         }
@@ -92,7 +93,7 @@ public class DefaultLogHandler extends LoggerObject implements LogHandler {
         }
 
         ApiLog apiLog = logHandlerParams.getApiLog();
-        boolean isExecutionTime = apiLog.executionTime();
+        boolean isExecutionTime = apiLog.isExecutionTime();
         boolean isStackMessage = apiLog.isStackMessage();
         long executeTime = logHandlerParams.getExecuteTime();
         Throwable throwable = logHandlerParams.getThrowable();
@@ -124,7 +125,7 @@ public class DefaultLogHandler extends LoggerObject implements LogHandler {
         }
         ApiLog apiLog = logHandlerParams.getApiLog();
 
-        boolean isExecutionTime = apiLog.executionTime();
+        boolean isExecutionTime = apiLog.isExecutionTime();
         long executeTime = logHandlerParams.getExecuteTime();
 
         String afterFormat = StringUtils.isNotEmpty(apiLog.afterMessageFormat()) ?

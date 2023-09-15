@@ -2,5 +2,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 io.github.hellfs.autoconfigure.FilterAutoConfiguration,\
 io.github.hellfs.autoconfigure.UtilAutoConfiguration,\
-io.github.hellfs.autoconfigure.ServiceAutoConfiguration,\
-io.github.hellfs.autoconfigure.PropertiesAutoConfiguration
+io.github.hellfs.autoconfigure.ServiceAutoConfiguration

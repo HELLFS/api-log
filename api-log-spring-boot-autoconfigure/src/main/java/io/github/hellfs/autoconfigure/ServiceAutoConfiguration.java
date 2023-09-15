@@ -2,10 +2,12 @@ package io.github.hellfs.autoconfigure;
 
 import io.github.hellfs.aspect.ApiLogAspect;
 import io.github.hellfs.exception.ApiLogException;
+import io.github.hellfs.properties.*;
 import io.github.hellfs.service.base.impl.BaseHandler;
 import io.github.hellfs.service.log.LogHandler;
 import io.github.hellfs.service.log.impl.DefaultLogHandler;
 import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.context.annotation.Configuration;
@@ -22,6 +24,9 @@ import static io.github.hellfs.exception.errorcode.impl.ApiLogErrorCodeEnum.IMPL
  * @author hellfs
  * @date 2023-09-07
  */
+@EnableConfigurationProperties({
+        ApiLogProperties.class,ApiLogHeadProperties.class, ApiLogBeforeProperties.class,
+        ApiLogAfterReturningProperties.class, ApiLogAfterThrowingProperties.class,ApiLogAfterProperties.class})
 @Configuration
 public class ServiceAutoConfiguration {
 

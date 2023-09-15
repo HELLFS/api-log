@@ -14,8 +14,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class ApiLogProperties {
 
     /**
-     * 是否打印执行时间  {@link ApiLog#executionTime()} 优先
+     * 是否打印执行时间  {@link ApiLog#isExecutionTime()} 优先
      */
-    private boolean executionTime = true;
+    private boolean isExecutionTime = true;
 
 }

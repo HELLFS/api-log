@@ -24,13 +24,11 @@ public @interface ApiLog {
     /**
      * 日志头信息的前置拼接符，也可以配置统一实现，注解优先
      */
-    //String logHeadPrefix() default "[";
     String logHeadPrefix() default "";
 
     /**
      * 日志头信息的后置拼接符，也可以配置统一实现，注解优先
      */
-    //String logHeadSuffix() default "]";
     String logHeadSuffix() default "";
 
     /**
@@ -41,8 +39,7 @@ public @interface ApiLog {
      *  自定义占位符，默认从请求参数中获取，获取不到，则 获取 {@link ExtendDataValue} 或 {@link ExtendDataMethod}；反之：未知
      *  可以配置统一实现，注解优先
      */
-    //String beforeMessageFormat() default "";
-    String beforeMessageFormat() default "处理开始，参数列表:${reqParams}";
+    String beforeMessageFormat() default "";
 
     /**
      * 接口执行后置(执行成功时触发)日志打印  ${}：占位符
@@ -52,7 +49,6 @@ public @interface ApiLog {
      *  自定义占位符，默认从请求参数中获取，获取不到，则 获取 {@link ExtendDataValue} 或 {@link ExtendDataMethod}；反之：未知
      * 可以配置统一实现，注解优先
      */
-    //String afterMessageFormat() default "处理成功，参数列表:${reqParams}";
     String afterReturningMessageFormat() default "";
 
     /**
@@ -64,7 +60,6 @@ public @interface ApiLog {
      * 可以配置统一实现，注解优先
      * 注意：默认追加异常信息打印   案例：结束，参数列表:${}，失败原因:{}    如不需要，则 {@link ApiLog#isStackMessage()} 控制
      */
-    //String throwMessageFormat() default "处理异常，参数列表:${reqParams}";
     String afterThrowingMessageFormat() default "";
 
     /**
@@ -82,7 +77,7 @@ public @interface ApiLog {
      * 是否打印执行时间
      * 可以配置统一实现，注解优先
      */
-    boolean executionTime() default true;
+    boolean isExecutionTime() default true;
 
     /**
      * 是否追加堆栈异常信息打印

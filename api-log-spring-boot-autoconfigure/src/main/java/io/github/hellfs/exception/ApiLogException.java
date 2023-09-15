@@ -20,4 +20,9 @@ public class ApiLogException extends RuntimeException{
     public ApiLogException(Throwable e) {
         super(e);
     }
+
+    public ApiLogException(ErrorCode errorCode,Throwable e) {
+        super(errorCode.getMessage(),e);
+        this.errorCode = errorCode;
+    }
 }

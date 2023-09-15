@@ -9,6 +9,7 @@ import lombok.Getter;
 public enum ExtendHandlerErrorCodeEnum implements ErrorCode {
 
     UNKNOWN(40000,"扩展处理类执行异常"),
+    BEAN_ERROR(40001,"扩展类注册bean失败"),
     ;
 
     private final Integer code;

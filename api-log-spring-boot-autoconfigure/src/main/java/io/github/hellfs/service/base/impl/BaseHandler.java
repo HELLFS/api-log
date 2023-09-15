@@ -14,7 +14,6 @@ import io.github.hellfs.service.extendhandler.BeforeExtendHandler;
 import io.github.hellfs.service.extendhandler.param.ExtendHandlerParams;
 import io.github.hellfs.service.log.LogHandler;
 import io.github.hellfs.service.log.param.LogHandlerParams;
-import io.github.hellfs.util.BeanUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +27,14 @@ public class BaseHandler implements BaseBefore, BaseAfterReturning, BaseAfterThr
 
     @Autowired
     private LogHandler logHandler;
-    @Autowired
-    private BeanUtil beanUtil;
+    @Autowired(required = false)
+    private BeforeExtendHandler beforeExtendHandler;
+    @Autowired(required = false)
+    private AfterReturningExtendHandler afterReturningExtendHandler;
+    @Autowired(required = false)
+    private AfterThrowingExtendHandler afterThrowingExtendHandler;
+    @Autowired(required = false)
+    private AfterExtendHandler afterExtendHandler;
 
     @Override
     public void before(BaseParam baseParam) {
@@ -44,11 +49,10 @@ public class BaseHandler implements BaseBefore, BaseAfterReturning, BaseAfterThr
 
         //扩展功能处理类
         try {
-            BeforeExtendHandler bean = beanUtil.getBean(BeforeExtendHandler.class);
-            if(bean != null){
+            if(beforeExtendHandler != null){
                 ExtendHandlerParams extendHandlerParams = new ExtendHandlerParams();
                 BeanUtils.copyProperties(baseParam,extendHandlerParams);
-                bean.before(extendHandlerParams);
+                beforeExtendHandler.before(extendHandlerParams);
             }
         } catch (BeansException e) {
             throw new ExtendHandlerException(e);
@@ -68,11 +72,10 @@ public class BaseHandler implements BaseBefore, BaseAfterReturning, BaseAfterThr
 
         //扩展功能处理类
         try {
-            AfterReturningExtendHandler bean = beanUtil.getBean(AfterReturningExtendHandler.class);
-            if(bean != null){
+            if(afterReturningExtendHandler != null){
                 ExtendHandlerParams extendHandlerParams = new ExtendHandlerParams();
                 BeanUtils.copyProperties(baseParam,extendHandlerParams);
-                bean.afterReturning(extendHandlerParams);
+                afterReturningExtendHandler.afterReturning(extendHandlerParams);
             }
         } catch (BeansException e) {
             throw new ExtendHandlerException(e);
@@ -92,11 +95,10 @@ public class BaseHandler implements BaseBefore, BaseAfterReturning, BaseAfterThr
 
         //扩展功能处理类
         try {
-            AfterThrowingExtendHandler bean = beanUtil.getBean(AfterThrowingExtendHandler.class);
-            if(bean != null){
+            if(afterThrowingExtendHandler != null){
                 ExtendHandlerParams extendHandlerParams = new ExtendHandlerParams();
                 BeanUtils.copyProperties(baseParam,extendHandlerParams);
-                bean.afterThrowing(extendHandlerParams);
+                afterThrowingExtendHandler.afterThrowing(extendHandlerParams);
             }
         } catch (BeansException e) {
             throw new ExtendHandlerException(e);
@@ -116,11 +118,10 @@ public class BaseHandler implements BaseBefore, BaseAfterReturning, BaseAfterThr
 
         //扩展功能处理类
         try {
-            AfterExtendHandler bean = beanUtil.getBean(AfterExtendHandler.class);
-            if(bean != null){
+            if(afterExtendHandler != null){
                 ExtendHandlerParams extendHandlerParams = new ExtendHandlerParams();
                 BeanUtils.copyProperties(baseParam,extendHandlerParams);
-                bean.after(extendHandlerParams);
+                afterExtendHandler.after(extendHandlerParams);
             }
         } catch (BeansException e) {
             throw new ExtendHandlerException(e);

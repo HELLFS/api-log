@@ -25,4 +25,7 @@ public class ExtendDataException extends ApiLogException{
     public ExtendDataException(Throwable e) {
         super(e);
     }
+    public ExtendDataException(ErrorCode errorCode,Throwable e){
+        super(errorCode,e);
+    }
 }

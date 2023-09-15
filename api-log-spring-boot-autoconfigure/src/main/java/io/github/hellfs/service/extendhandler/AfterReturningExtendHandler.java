@@ -7,7 +7,7 @@ import io.github.hellfs.service.extendhandler.param.ExtendHandlerParams;
  * @author hellfs
  * @date 2023-07-23
  */
-public interface AfterReturningExtendHandler {
+public interface AfterReturningExtendHandler extends ExtendHandler {
 
     void afterReturning(ExtendHandlerParams extendHandlerParams);
 }
