@@ -21,6 +21,10 @@ public class ApiLogAfterProperties {
      */
     private boolean enable = false;
     /**
+     * 是否打印执行时间，控制 {@link ApiLog#isExecutionTime()}
+     */
+    private boolean isExecutionTime = true;
+    /**
      * 最终日志打印  {@link ApiLog#afterMessageFormat()}  ${?}：占位符
      * 特殊定义占位符：
      *      reqParams：请求接口完整参数列表
@@ -28,6 +32,6 @@ public class ApiLogAfterProperties {
      *  自定义占位符，默认从请求参数中获取，获取不到，则 获取 {@link ExtendDataValue} 或 {@link ExtendDataMethod}；反之：未知
      *  可以配置统一实现，注解优先
      */
-    private String messageFormat = "";
+    private String messageFormat = "最终执行，参数列表:${reqParams}";
 
 }

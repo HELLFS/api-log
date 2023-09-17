@@ -20,6 +20,10 @@ public class ApiLogAfterThrowingProperties {
      */
     private boolean enable = true;
     /**
+     * 是否打印执行时间，控制 {@link ApiLog#isExecutionTime()}
+     */
+    private boolean isExecutionTime = true;
+    /**
      * 堆栈信息是否追加，控制 {@link ApiLog#isStackMessage()}
      */
     private boolean isStackMessage = true;

@@ -2,6 +2,7 @@ package io.github.hellfs.annotation;
 
 import io.github.hellfs.annotation.extenddata.ExtendDataMethod;
 import io.github.hellfs.annotation.extenddata.ExtendDataValue;
+import io.github.hellfs.common.enums.BooleanEnum;
 
 import java.lang.annotation.*;
 
@@ -77,11 +78,11 @@ public @interface ApiLog {
      * 是否打印执行时间
      * 可以配置统一实现，注解优先
      */
-    boolean isExecutionTime() default true;
+    BooleanEnum isExecutionTime() default BooleanEnum.NULL;
 
     /**
      * 是否追加堆栈异常信息打印
      * 可以配置统一实现，注解优先
      */
-    boolean isStackMessage() default true;
+    BooleanEnum isStackMessage() default BooleanEnum.NULL;
 }

@@ -2,9 +2,10 @@ package io.github.hellfs.service.log.impl;
 
 import com.alibaba.fastjson2.JSONObject;
 import io.github.hellfs.annotation.ApiLog;
-import io.github.hellfs.service.log.param.LogHandlerParams;
+import io.github.hellfs.common.enums.BooleanEnum;
 import io.github.hellfs.properties.*;
 import io.github.hellfs.service.log.LogHandler;
+import io.github.hellfs.service.log.param.LogHandlerParams;
 import io.github.hellfs.util.ExtendDataUtil;
 import io.github.hellfs.util.LogHandlerUtil;
 import io.github.hellfs.util.LoggerObject;
@@ -67,9 +68,6 @@ public class DefaultLogHandler extends LoggerObject implements LogHandler {
         }
 
         ApiLog apiLog = logHandlerParams.getApiLog();
-        boolean isExecutionTime = apiLog.isExecutionTime();
-
-        long executeTime = logHandlerParams.getExecuteTime();
 
         String afterReturningFormat = StringUtils.isNotEmpty(apiLog.afterReturningMessageFormat()) ?
                 apiLog.afterReturningMessageFormat() : afterReturningProperties.getMessageFormat();
@@ -77,11 +75,7 @@ public class DefaultLogHandler extends LoggerObject implements LogHandler {
         builder = new StringBuilder();
         List<Object> placeholderData = this.handler(logHandlerParams, afterReturningFormat, builder);
 
-        //是否打印执行时间
-        if(isExecutionTime || properties.isExecutionTime()){
-            builder.append(EXECUTE_TIME_MESSAGE_FORMAT);
-            placeholderData.add(executeTime);
-        }
+        this.isPrintExecutionTime(logHandlerParams,placeholderData,afterReturningProperties.isExecutionTime());
 
         logger.info(builder.toString(),placeholderData.toArray());
     }
@@ -93,10 +87,6 @@ public class DefaultLogHandler extends LoggerObject implements LogHandler {
         }
 
         ApiLog apiLog = logHandlerParams.getApiLog();
-        boolean isExecutionTime = apiLog.isExecutionTime();
-        boolean isStackMessage = apiLog.isStackMessage();
-        long executeTime = logHandlerParams.getExecuteTime();
-        Throwable throwable = logHandlerParams.getThrowable();
 
         String afterThrowingFormat = StringUtils.isNotEmpty(apiLog.afterThrowingMessageFormat()) ?
                 apiLog.afterThrowingMessageFormat() : afterThrowingProperties.getMessageFormat();
@@ -104,16 +94,9 @@ public class DefaultLogHandler extends LoggerObject implements LogHandler {
         builder = new StringBuilder();
         List<Object> placeholderData = this.handler(logHandlerParams, afterThrowingFormat, builder);
 
-        //是否打印执行时间
-        if(isExecutionTime || properties.isExecutionTime()){
-            builder.append(EXECUTE_TIME_MESSAGE_FORMAT);
-            placeholderData.add(executeTime);
-        }
-        //异常打印
-        if(isStackMessage || afterThrowingProperties.isStackMessage()){
-            builder.append(THROW_MESSAGE_FORMAT);
-            placeholderData.add(throwable);
-        }
+        this.isPrintExecutionTime(logHandlerParams,placeholderData,afterThrowingProperties.isExecutionTime());
+
+        this.isPrintStackMessage(logHandlerParams,placeholderData,afterThrowingProperties.isStackMessage());
 
         logger.error(builder.toString(),placeholderData.toArray());
     }
@@ -125,20 +108,13 @@ public class DefaultLogHandler extends LoggerObject implements LogHandler {
         }
         ApiLog apiLog = logHandlerParams.getApiLog();
 
-        boolean isExecutionTime = apiLog.isExecutionTime();
-        long executeTime = logHandlerParams.getExecuteTime();
-
         String afterFormat = StringUtils.isNotEmpty(apiLog.afterMessageFormat()) ?
                 apiLog.afterMessageFormat() : afterProperties.getMessageFormat();
 
         builder = new StringBuilder();
         List<Object> placeholderData = this.handler(logHandlerParams, afterFormat, builder);
 
-        //是否打印执行时间
-        if(isExecutionTime || properties.isExecutionTime()){
-            builder.append(EXECUTE_TIME_MESSAGE_FORMAT);
-            placeholderData.add(executeTime);
-        }
+        this.isPrintExecutionTime(logHandlerParams,placeholderData,afterProperties.isExecutionTime());
 
         logger.info(builder.toString(),placeholderData.toArray());
     }
@@ -175,5 +151,45 @@ public class DefaultLogHandler extends LoggerObject implements LogHandler {
         builder.append(message);
         //占位符对应的数据列表
         return LogHandlerUtil.placeholderData(placeholderList, apiParams, requestParams, extendDataMap);
+    }
+
+    /**
+     * 是否打印执行时间
+     * @param logHandlerParams      处理所需的相关参数列表
+     * @param placeholderData       打印数据列表
+     * @param configValue           配置文件中保存的值
+     */
+    private void isPrintExecutionTime(LogHandlerParams logHandlerParams, List<Object> placeholderData, boolean configValue){
+        ApiLog apiLog = logHandlerParams.getApiLog();
+        long executeTime = logHandlerParams.getExecuteTime();
+
+        BooleanEnum isExecutionTime = apiLog.isExecutionTime();
+        Boolean isPrintTime = isExecutionTime.equals(BooleanEnum.NULL) ? configValue : isExecutionTime.getValue();
+
+        //是否打印执行时间
+        if(Boolean.TRUE.equals(isPrintTime)){
+            builder.append(EXECUTE_TIME_MESSAGE_FORMAT);
+            placeholderData.add(executeTime);
+        }
+    }
+
+    /**
+     * 是否异常打印
+     * @param logHandlerParams      处理所需的相关参数列表
+     * @param placeholderData       打印数据列表
+     * @param configValue           配置文件中保存的值
+     */
+    private void isPrintStackMessage(LogHandlerParams logHandlerParams, List<Object> placeholderData, boolean configValue){
+        ApiLog apiLog = logHandlerParams.getApiLog();
+        Throwable e = logHandlerParams.getThrowable();
+
+        BooleanEnum isStackMessage = apiLog.isStackMessage();
+        Boolean isPrintTime = isStackMessage.equals(BooleanEnum.NULL) ? configValue : isStackMessage.getValue();
+
+        //是否打印执行时间
+        if(Boolean.TRUE.equals(isPrintTime)){
+            builder.append(THROW_MESSAGE_FORMAT);
+            placeholderData.add(e);
+        }
     }
 }
