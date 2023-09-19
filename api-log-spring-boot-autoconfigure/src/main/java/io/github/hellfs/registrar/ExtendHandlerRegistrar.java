@@ -1,6 +1,6 @@
 package io.github.hellfs.registrar;
 
-import io.github.hellfs.annotation.EnableExtendHandler;
+import io.github.hellfs.annotation.EnableAutoExtendHandler;
 import io.github.hellfs.exception.ExtendHandlerException;
 import io.github.hellfs.exception.errorcode.impl.ExtendHandlerErrorCodeEnum;
 import io.github.hellfs.service.extendhandler.ExtendHandler;
@@ -38,7 +38,7 @@ public class ExtendHandlerRegistrar implements ImportBeanDefinitionRegistrar, En
             String packageName = clazz.getPackage().getName();
             packageNames.add(packageName);
 
-            Map<String, Object> annotationAttributes = annotationMetadata.getAnnotationAttributes(EnableExtendHandler.class.getCanonicalName());
+            Map<String, Object> annotationAttributes = annotationMetadata.getAnnotationAttributes(EnableAutoExtendHandler.class.getCanonicalName());
             for (String packageName1 : (String[]) annotationAttributes.get("value")) {
                 if(StringUtils.hasText(packageName1)){
                     packageNames.add(packageName1);

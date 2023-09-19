@@ -15,7 +15,7 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE})
 @Documented
 @Import({ExtendHandlerRegistrar.class})
-public @interface EnableExtendHandler {
+public @interface EnableAutoExtendHandler {
 
     /**
      * 扫描的包路径列表
