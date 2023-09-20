@@ -29,9 +29,6 @@ public class DefaultLogHandler extends LoggerObject implements LogHandler {
      * 输出日志拼接对象
      */
     private StringBuilder builder;
-
-    @Autowired
-    private ApiLogProperties properties;
     @Autowired
     private ApiLogHeadProperties headProperties;
     @Autowired

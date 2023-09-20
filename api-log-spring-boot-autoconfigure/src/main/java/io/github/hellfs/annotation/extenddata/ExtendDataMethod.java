@@ -10,6 +10,7 @@ import java.lang.annotation.*;
  * 用于 {@link ApiLog#beforeMessageFormat()}  自定义占位符
  * 用于 {@link ApiLog#afterReturningMessageFormat()}   自定义占位符
  * 用于 {@link ApiLog#afterThrowingMessageFormat()}   自定义占位符
+ * 用于 {@link ApiLog#afterMessageFormat()}   自定义占位符
  * @author hellfs
  * @date 2023-07-22
  */
@@ -19,11 +20,23 @@ import java.lang.annotation.*;
 @Documented
 public @interface ExtendDataMethod {
 
+    /**
+     * 键
+     */
     String key();
 
+    /**
+     * 类对象
+     */
     Class<?> clazz();
 
+    /**
+     * 方法名
+     */
     String methodName();
 
+    /**
+     * 普通类还是bean
+     */
     ExTendDataMethodModel model() default ExTendDataMethodModel.CLASS;
 }
