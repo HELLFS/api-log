@@ -13,8 +13,8 @@ import org.springframework.context.annotation.Configuration;
  * @date 2023-09-07
  */
 @EnableConfigurationProperties({
-        ApiLogProperties.class,ApiLogHeadProperties.class, ApiLogBeforeProperties.class,
-        ApiLogAfterReturningProperties.class, ApiLogAfterThrowingProperties.class,ApiLogAfterProperties.class})
+        ApiLogHeadProperties.class, ApiLogBeforeProperties.class, ApiLogAfterReturningProperties.class,
+        ApiLogAfterThrowingProperties.class,ApiLogAfterProperties.class})
 @Configuration
 public class ServiceAutoConfiguration {
 
