@@ -3,6 +3,9 @@ package io.github.hellfs.autoconfigure;
 import io.github.hellfs.aspect.ApiLogAspect;
 import io.github.hellfs.properties.*;
 import io.github.hellfs.service.base.impl.BaseHandler;
+import io.github.hellfs.service.log.LogHandler;
+import io.github.hellfs.service.log.impl.DefaultLogHandler;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,5 +29,11 @@ public class ServiceAutoConfiguration {
     @Bean
     public BaseHandler baseHandler(){
         return new BaseHandler();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public LogHandler defaultLogHandler(){
+        return new DefaultLogHandler();
     }
 }
