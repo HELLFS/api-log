@@ -22,7 +22,7 @@ public class ApiLogAfterReturningProperties {
     /**
      * 是否打印执行时间，控制 {@link ApiLog#isExecutionTime()}
      */
-    private boolean isExecutionTime = true;
+    private boolean executionTime = true;
     /**
      * 接口执行后置(执行成功时触发)日志打印  {@link ApiLog#afterReturningMessageFormat()}  ${?}：占位符
      * 特殊定义占位符：

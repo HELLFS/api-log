@@ -23,7 +23,7 @@ public class ApiLogAfterProperties {
     /**
      * 是否打印执行时间，控制 {@link ApiLog#isExecutionTime()}
      */
-    private boolean isExecutionTime = true;
+    private boolean executionTime = true;
     /**
      * 最终日志打印  {@link ApiLog#afterMessageFormat()}  ${?}：占位符
      * 特殊定义占位符：

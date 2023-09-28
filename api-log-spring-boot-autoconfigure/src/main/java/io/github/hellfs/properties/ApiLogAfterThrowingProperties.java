@@ -22,11 +22,11 @@ public class ApiLogAfterThrowingProperties {
     /**
      * 是否打印执行时间，控制 {@link ApiLog#isExecutionTime()}
      */
-    private boolean isExecutionTime = true;
+    private boolean executionTime = true;
     /**
      * 堆栈信息是否追加，控制 {@link ApiLog#isStackMessage()}
      */
-    private boolean isStackMessage = true;
+    private boolean stackMessage = true;
     /**
      * 接口执行异常日志打印  {@link ApiLog#afterThrowingMessageFormat()}  ${?}：占位符
      * 特殊定义占位符：

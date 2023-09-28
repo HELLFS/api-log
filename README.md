@@ -27,22 +27,22 @@ api-log:
     # 是否开启打印
     enable: true
     # 是否打印执行时间 {@link ApiLog#isExecutionTime()} 注解优先
-    is-execution-time: true
+    execution-time: true
     # 接口执行后置(执行成功时触发)日志打印格式 {@link ApiLog#afterReturningMessageFormat()} 注解优先
     message-format: '处理成功，参数列表:${reqParams}'
   # 异常日志打印
   after-throwing:
     enable: true
     # 是否打印执行时间 {@link ApiLog#isExecutionTime()} 注解优先
-    is-execution-time: true
+    execution-time: true
     # 堆栈信息是否追加 {@link ApiLog#isStackMessage()} 注解优先
-    is-stack-message: true
+    stack-message: true
   # 最终日志打印，类比 finally 代码块执行时机
   after:
     # 是否开启打印
     enable: false
     # 是否打印执行时间 {@link ApiLog#isExecutionTime()} 注解优先
-    is-execution-time: true
+    execution-time: true
     # 最终日志打印格式  {@link ApiLog#afterMessageFormat()}  注解优先
     message-format: '最终执行，参数列表:${reqParams}'
 ```

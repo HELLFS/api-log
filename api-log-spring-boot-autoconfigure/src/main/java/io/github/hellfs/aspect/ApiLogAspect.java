@@ -63,8 +63,11 @@ public class ApiLogAspect extends LoggerObject {
         try {
             baseHandler.before(baseParam);
             start = System.currentTimeMillis();
-            proceed = joinPoint.proceed(args);
-            end = System.currentTimeMillis();
+            try {
+                proceed = joinPoint.proceed(args);
+            } finally {
+                end = System.currentTimeMillis();
+            }
             baseParam.setExecuteTime(end - start);
             baseHandler.afterReturning(baseParam);
         } catch (Throwable e) {
