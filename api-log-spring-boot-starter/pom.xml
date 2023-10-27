@@ -9,6 +9,7 @@
 
   <name>api-log-spring-boot-starter</name>
   <url>https://github.com/HELLFS/api-log</url>
+  <description>Based on Spring-AOP, it integrates default log printing, custom log printing and extended operation functions</description>
 
   <properties>
     <java.version>1.8</java.version>
