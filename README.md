@@ -72,7 +72,7 @@ api-log:
 2.在需要打印日志的接口上添加注解
 
 ```java
-@ApiLog()
+@ApiLog(logHead = "案例")
 @GetMapping(value = "/demo")
 public Object demo(){
     return "demo";
@@ -111,7 +111,7 @@ public @interface ExtendDataValue {
 案例：以下案例使用注解中的属性体现
 
 ```java
-@ApiLog(beforeMessageFormat = "处理开始，自定义参数列表:{姓名:${name},年龄:${age}},参数列表:${reqParams}")
+@ApiLog(logHead = "案例", beforeMessageFormat = "处理开始，自定义参数列表:{姓名:${name},年龄:${age}},参数列表:${reqParams}")
 @ExtendDataValue(key = "name",value = "张三")
 @ExtendDataValue(key = "age",value = "10")
 @GetMapping(value = "/demo")
@@ -170,7 +170,7 @@ public enum ExTendDataMethodModel {
 案例：以下案例使用注解中的属性体现
 
 ```java
-@ApiLog(beforeMessageFormat = "处理开始，自定义参数列表:{姓名:${name},年龄:${age}},参数列表:${reqParams}")
+@ApiLog(logHead = "案例", beforeMessageFormat = "处理开始，自定义参数列表:{姓名:${name},年龄:${age}},参数列表:${reqParams}")
 @ExtendDataMethod(key = "name", clazz = xxx.class, methodName = "getName", model = ExTendDataMethodModel.CLASS)
 @ExtendDataMethod(key = "age", clazz = xxx.class, methodName = "getAge", model = ExTendDataMethodModel.BEAN)
 @GetMapping(value = "/demo")
