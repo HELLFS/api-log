@@ -65,7 +65,7 @@ api-log:
 <dependency>
     <groupId>io.github.hellfs</groupId>
     <artifactId>api-log-spring-boot-starter</artifactId>
-    <version>1.0.0</version>
+    <version>${last.version}</version>
 </dependency>
 ```
 
