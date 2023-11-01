@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * 业务层相关自动配置类
  * @author hellfs
- * @date 2023-09-07
+ * create by 2023-09-07
  */
 @EnableConfigurationProperties({
         ApiLogHeadProperties.class, ApiLogBeforeProperties.class, ApiLogAfterReturningProperties.class,

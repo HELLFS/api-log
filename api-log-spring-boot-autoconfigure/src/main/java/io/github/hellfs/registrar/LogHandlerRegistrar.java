@@ -22,7 +22,7 @@ import java.util.Set;
  * 日志打印处理类自动注册类
  *  自动注入实现类，移除默认日志打印类
  * @author hellfs
- * @date 2023-09-19
+ * create by 2023-09-19
  */
 public class LogHandlerRegistrar implements ImportBeanDefinitionRegistrar, EnvironmentAware {
 

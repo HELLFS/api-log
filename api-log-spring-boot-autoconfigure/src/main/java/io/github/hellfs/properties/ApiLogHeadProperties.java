@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * api-log-head-配置类
  * @author hellfs
- * @date 2023-07-23
+ * create by 2023-07-23
  */
 @Data
 @ConfigurationProperties(prefix = "api-log.head")

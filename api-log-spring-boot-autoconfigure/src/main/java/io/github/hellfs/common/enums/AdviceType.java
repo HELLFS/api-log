@@ -3,7 +3,7 @@ package io.github.hellfs.common.enums;
 /**
  * 通知类型 {@link }
  * @author hellfs
- * @date 2023-07-16
+ * create by 2023-07-16
  */
 public enum AdviceType {
 

@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * 后置日志打印-配置类
  * @author hellfs
- * @date 2023-07-23
+ * create by 2023-07-23
  */
 @Data
 @ConfigurationProperties(prefix = "api-log.alter-returning")

@@ -10,7 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * 最终日志打印-配置类
  * 执行时机，可以理解成 finally 代码块
  * @author hellfs
- * @date 2023-07-23
+ * create by 2023-07-23
  */
 @Data
 @ConfigurationProperties(prefix = "api-log.after")

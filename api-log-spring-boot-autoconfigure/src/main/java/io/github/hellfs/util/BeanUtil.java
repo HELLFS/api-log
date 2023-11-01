@@ -7,7 +7,7 @@ import org.springframework.context.ApplicationContextAware;
 /**
  * BeanUtil
  * @author hellfs
- * @date 2023-09-07
+ * create by 2023-09-07
  */
 public class BeanUtil implements ApplicationContextAware {
 

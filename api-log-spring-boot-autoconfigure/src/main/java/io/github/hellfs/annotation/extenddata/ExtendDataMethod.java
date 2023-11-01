@@ -12,7 +12,7 @@ import java.lang.annotation.*;
  * 用于 {@link ApiLog#afterThrowingMessageFormat()}   自定义占位符
  * 用于 {@link ApiLog#afterMessageFormat()}   自定义占位符
  * @author hellfs
- * @date 2023-07-22
+ * create by 2023-07-22
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
@@ -22,21 +22,25 @@ public @interface ExtendDataMethod {
 
     /**
      * 键
+     * @return String
      */
     String key();
 
     /**
      * 类对象
+     * @return Class
      */
     Class<?> clazz();
 
     /**
      * 方法名
+     * @return String
      */
     String methodName();
 
     /**
      * 普通类还是bean
+     * @return ExTendDataMethodModel
      */
     ExTendDataMethodModel model() default ExTendDataMethodModel.CLASS;
 }

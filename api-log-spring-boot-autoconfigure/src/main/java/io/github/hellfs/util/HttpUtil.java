@@ -13,7 +13,7 @@ import java.nio.charset.StandardCharsets;
 /**
  * HTTP相关工具类
  * @author hellfs
- * @date 2023-09-07
+ * create by 2023-09-07
  */
 public class HttpUtil extends LoggerObject {
 
@@ -22,7 +22,7 @@ public class HttpUtil extends LoggerObject {
     /**
      * 获取body消息体中的参数列表
      * @param request   请求对象
-     * @return
+     * @return String
      */
     public static String getBodyString(HttpServletRequest request)
     {

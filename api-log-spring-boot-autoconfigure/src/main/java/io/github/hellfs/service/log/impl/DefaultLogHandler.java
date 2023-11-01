@@ -19,7 +19,7 @@ import java.util.Map;
 /**
  * 默认日志打印类
  * @author hellfs
- * @date 2023-07-23
+ * create by 2023-07-23
  */
 public class DefaultLogHandler extends LoggerObject implements LogHandler {
 

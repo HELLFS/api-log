@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 /**
  * 日志打印时所需的工具类
  * @author hellfs
- * @date 2023-07-30
+ * create by 2023-07-30
  */
 public class LogHandlerUtil {
 

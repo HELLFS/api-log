@@ -19,7 +19,7 @@ import java.util.Map;
 /**
  * 获取扩展数据列表
  * @author hellfs
- * @date 2023-09-07
+ * create by 2023-09-07
  */
 public class ExtendDataUtil  {
 
@@ -29,7 +29,7 @@ public class ExtendDataUtil  {
     /**
      * 获取自定义(扩展)参数
      * @param joinPoint 切入点对象
-     * @return  Map<String,String>
+     * @return  Map
      */
     public Map<String,String> extendData(JoinPoint joinPoint){
         Signature signature = joinPoint.getSignature();
@@ -48,7 +48,7 @@ public class ExtendDataUtil  {
     /**
      * 获取常量类型-自定义参数
      * @param method    方法对象
-     * @return  Map<String,String>
+     * @return  Map
      */
     private Map<String,String> extendDataValue(Method method){
         Map<String, String> map = new LinkedHashMap<>();
@@ -62,7 +62,7 @@ public class ExtendDataUtil  {
     /**
      * 获取方法类型-自定义参数
      * @param method    方法对象
-     * @return  Map<String,String>
+     * @return  Map
      */
     private Map<String,String> extendDataMethod(Method method){
         Map<String, String> map = new LinkedHashMap<>();

@@ -6,7 +6,7 @@ import io.github.hellfs.annotation.extenddata.ExtendDataMethod;
  * 获取方式，用于实现 扩展数据-方法 返回值获取方式
  * {@link ExtendDataMethod#model()}
  * @author hellfs
- * @date 2023-07-20
+ * create by 2023-07-20
  */
 public enum ExTendDataMethodModel {
 

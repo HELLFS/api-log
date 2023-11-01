@@ -7,7 +7,7 @@ import lombok.Data;
 /**
  * 整个启动器异常类
  * @author hellfs
- * @date 2023-07-20
+ * create by 2023-07-20
  */
 @Data
 public class LogHandlerException extends ApiLogException{

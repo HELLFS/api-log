@@ -21,7 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * 根处理类
  * @author hellfs
- * @date 2023-09-07
+ * create by 2023-09-07
  */
 public class BaseHandler implements BaseBefore, BaseAfterReturning, BaseAfterThrowing, BaseAfter {
 

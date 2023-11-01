@@ -7,7 +7,7 @@ import lombok.Data;
 /**
  * 扩展功能类相关异常类
  * @author hellfs
- * @date 2023-07-20
+ * create by 2023-07-20
  */
 @Data
 public class ExtendHandlerException extends ApiLogException{

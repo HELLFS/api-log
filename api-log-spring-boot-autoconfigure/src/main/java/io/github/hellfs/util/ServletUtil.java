@@ -12,7 +12,7 @@ import java.util.Set;
 /**
  * Servlet相关工具类
  * @author hellfs
- * @date 2023-07-20
+ * create by 2023-07-20
  */
 public class ServletUtil {
 
@@ -31,7 +31,7 @@ public class ServletUtil {
     /**
      * 获取请求参数
      * @param request 请求对象
-     * @return  Map<String,String>
+     * @return  Map
      */
     public static Map<String,String> getParamMap(HttpServletRequest request){
         Map<String,String> map = new LinkedHashMap<>();

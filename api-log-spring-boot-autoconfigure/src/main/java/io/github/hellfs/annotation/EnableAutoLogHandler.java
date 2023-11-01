@@ -9,7 +9,7 @@ import java.lang.annotation.*;
  * 开启日志打印类自动注册功能
  * 不需要使用者手动交给容器
  * @author hellfs
- * @date 2023-09-19
+ * create by 2023-09-19
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
@@ -19,6 +19,7 @@ public @interface EnableAutoLogHandler {
 
     /**
      * 扫描的包路径列表
+     * @return String[]
      */
     String[] value() default {};
 }

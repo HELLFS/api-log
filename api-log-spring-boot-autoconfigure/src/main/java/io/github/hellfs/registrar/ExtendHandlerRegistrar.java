@@ -21,7 +21,7 @@ import java.util.Set;
 /**
  * 扩展处理类自动注册类
  * @author hellfs
- * @date 2023-09-14
+ * create by 2023-09-14
  */
 public class ExtendHandlerRegistrar implements ImportBeanDefinitionRegistrar, EnvironmentAware {
 

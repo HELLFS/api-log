@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 /**
  * 日志打印注解
  * @author hellfs
- * @date 2023-07-16
+ * create by 2023-07-16
  */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
@@ -19,16 +19,19 @@ public @interface ApiLog {
     /**
      * 日志头信息
      * 默认日志格式：log.info("[logHead]...")
+     * @return String
      */
     String logHead();
 
     /**
      * 日志头信息的前置拼接符，也可以配置统一实现，注解优先
+     * @return String
      */
     String logHeadPrefix() default "";
 
     /**
      * 日志头信息的后置拼接符，也可以配置统一实现，注解优先
+     * @return String
      */
     String logHeadSuffix() default "";
 
@@ -39,6 +42,7 @@ public @interface ApiLog {
      *      apiParams：接口接收参数列表
      *  自定义占位符，默认从请求参数中获取，获取不到，则 获取 {@link ExtendDataValue} 或 {@link ExtendDataMethod}；反之：未知
      *  可以配置统一实现，注解优先
+     *  @return String
      */
     String beforeMessageFormat() default "";
 
@@ -49,6 +53,7 @@ public @interface ApiLog {
      *      apiParams：接口接收参数列表
      *  自定义占位符，默认从请求参数中获取，获取不到，则 获取 {@link ExtendDataValue} 或 {@link ExtendDataMethod}；反之：未知
      * 可以配置统一实现，注解优先
+     * @return String
      */
     String afterReturningMessageFormat() default "";
 
@@ -60,6 +65,7 @@ public @interface ApiLog {
      *  自定义占位符，默认从请求参数中获取，获取不到，则 获取 {@link ExtendDataValue} 或 {@link ExtendDataMethod}；反之：未知
      * 可以配置统一实现，注解优先
      * 注意：默认追加异常信息打印   案例：结束，参数列表:${}，失败原因:{}    如不需要，则 {@link ApiLog#isStackMessage()} 控制
+     * @return String
      */
     String afterThrowingMessageFormat() default "";
 
@@ -71,18 +77,21 @@ public @interface ApiLog {
      *  自定义占位符，默认从请求参数中获取，获取不到，则 获取 {@link ExtendDataValue} 或 {@link ExtendDataMethod}；反之：未知
      * 可以配置统一实现，注解优先
      * 注意：默认追加异常信息打印   案例：结束，参数列表:${}，失败原因:{}    如不需要，则 {@link ApiLog#isStackMessage()} 控制
+     * @return String
      */
     String afterMessageFormat() default "";
 
     /**
      * 是否打印执行时间
      * 可以配置统一实现，注解优先
+     * @return BooleanEnum
      */
     BooleanEnum isExecutionTime() default BooleanEnum.NULL;
 
     /**
      * 是否追加堆栈异常信息打印
      * 可以配置统一实现，注解优先
+     * @return BooleanEnum
      */
     BooleanEnum isStackMessage() default BooleanEnum.NULL;
 }
