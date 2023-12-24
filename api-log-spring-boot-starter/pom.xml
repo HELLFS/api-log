@@ -4,7 +4,7 @@
 
   <groupId>io.github.hellfs</groupId>
   <artifactId>api-log-spring-boot-starter</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <packaging>jar</packaging>
 
   <name>api-log-spring-boot-starter</name>
@@ -59,7 +59,7 @@
     <dependency>
       <groupId>io.github.hellfs</groupId>
       <artifactId>api-log-spring-boot-autoconfigure</artifactId>
-      <version>1.0.0</version>
+      <version>1.0.1</version>
     </dependency>
   </dependencies>
 

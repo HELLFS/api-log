@@ -87,7 +87,10 @@ public class LogHandlerUtil {
                 return new LinkedList<>(apiParams.values());
             }
 
-            Object value = requestParams.containsKey(placeholder) ? requestParams.get(placeholder) : extendDataMap.get(placeholder);
+            //默认从requestParams中获取，未拿到则从apiParams中获取，再次未拿到则从extendDataMap中获取
+            Object value = requestParams.containsKey(placeholder) ? requestParams.get(placeholder) : (
+                    apiParams.containsKey(placeholder) ? apiParams.get(placeholder) : extendDataMap.get(placeholder)
+            );
             //没有获取到需要的属性时，对应的值为 未知
             if(Objects.isNull(value)){
                 return UNKNOWN;
@@ -106,7 +109,7 @@ public class LogHandlerUtil {
     public static String removePlaceholder(String messageFormat,List<String> placeholderList){
         String logMessageFormat = messageFormat.replaceAll(PLACEHOLDER_PREFIX_PATTERN,BRACE_PREFIX);
         for (String placeholder : placeholderList) {
-            logMessageFormat = logMessageFormat.replace(placeholder,"");
+            logMessageFormat = logMessageFormat.replace(BRACE_PREFIX + placeholder + PLACEHOLDER_SUFFIX,BRACE_PREFIX + PLACEHOLDER_SUFFIX);
         }
         return logMessageFormat;
     }

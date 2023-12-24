@@ -55,6 +55,8 @@ api-log:
 
 `${...}`为占位符，用于控制打印日志的格式，特殊占位符(固定)有：`${reqParams}`请求接口完整参数列表；`${apiParams}`接口接收参数列表。当然也可以自定义占位符，具体使用请参照 **高级使用**-**自定义参数**
 
+注意默认打印逻辑只使用了`${reqParams}`，如需调整参数获取逻辑则可以参考 **高级使用**-**请求参数或接口参数定制化(`v1.0.1`)**
+
 
 
 ## 使用
@@ -87,7 +89,7 @@ public Object demo(){
 
 日志打印时如需对接口日志上打印自定义参数，则需要配合`@ExtendDataValue`和`@ExtendDataMethod`使用
 
-#### @ExtendDataValue
+#### `@ExtendDataValue`
 
 注解介绍：
 
@@ -120,7 +122,7 @@ public Object demo(){
 }
 ```
 
-#### @ExtendDataMethod
+#### `@ExtendDataMethod`
 
 数据类型为方法返回值，然后在打印格式语句中添加 `${key}`即可。同时可以添加多个。
 
@@ -151,7 +153,7 @@ public @interface ExtendDataMethod {
 }
 ```
 
-ExTendDataMethodModel
+`ExTendDataMethodModel`
 
 ```java
 public enum ExTendDataMethodModel {
@@ -188,7 +190,7 @@ public Object demo(){
 - 实现`LogHandler`类，并实现其中方法
 - 入口类中添加`@EnableAutoLogHandler`或者在其他类中添加但必须传入实现类的包路径
 
-LogHanlder
+`LogHanlder`
 
 ```java
 public interface LogHandler {
@@ -215,7 +217,7 @@ public interface LogHandler {
 }
 ```
 
-LogHandlerParams
+`LogHandlerParams`
 
 ```java
 public class LogHandlerParams {
@@ -257,4 +259,32 @@ public class LogHandlerParams {
 - 注入容器方式
   - 入口类添加`@EnableAutoExtendHandler`或者在非入口类中添加且必须传如实现类的包路径
   - 实现类添加注入容器的的注解，例如：@Component、@Service等
+
+### 执行顺序定制化(`v1.0.1`)
+
+日志打印基于Spring AOP实现，故当存在多个AOP时，可以通过`@Order`、实现`Ordered`和配置文件三种方式实现执行顺序。
+
+本日志打印实现 `Ordered`接口完成执行顺序的控制。
+
+至于多个AOP的执行顺序逻辑可简短理解：`同心圆，order值越小越在外围，中心是目标方法`  ，具体理解可自行百度。
+
+默认实现类`DefaultApiLogOrder`方法返回`Ordered.LOWEST_PRECEDENCE`即`Integer.MAX_VALUE`
+
+实现步骤：
+
+- 实现接口`ApiLogOrder`
+- 实现类添加到Spring容器
+
+
+
+### 请求参数或接口参数定制化(`v1.0.1`)
+
+默认实现了获取请求参数和接口参数，在后续原有/自定义的打印逻辑中使用，如果需要额外添加参数或作额外操作，则可以使用定制化功能
+
+共有两个方法，`requestParams`返回请求参数列表；`apiParams`返回接口参数列表
+
+实现步骤：
+
+- 继承 `ApiLogParamsHandler`类，并按照自己的需求重写对应的方法
+- 重写类添加到Spring容器
 

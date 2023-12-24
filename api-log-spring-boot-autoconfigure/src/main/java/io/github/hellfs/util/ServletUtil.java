@@ -6,8 +6,11 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Servlet相关工具类
@@ -33,8 +36,8 @@ public class ServletUtil {
      * @param request 请求对象
      * @return  Map
      */
-    public static Map<String,String> getParamMap(HttpServletRequest request){
-        Map<String,String> map = new LinkedHashMap<>();
+    public static Map<String,Object> getParamMap(HttpServletRequest request){
+        Map<String,Object> map = new LinkedHashMap<>();
         if(request == null){
             return map;
         }
@@ -42,7 +45,16 @@ public class ServletUtil {
         Map<String, String[]> parameterMap = request.getParameterMap();
         Set<Map.Entry<String, String[]>> entries = parameterMap.entrySet();
         for (Map.Entry<String, String[]> entry : entries) {
-            map.put(entry.getKey(), String.join(",", entry.getValue()));
+            if(entry.getValue().length == 0){
+                map.put(entry.getKey(), null);
+            }else{
+                if(entry.getValue().length == 1){
+                    map.put(entry.getKey(), entry.getValue()[0]);
+                }else{
+                    List<String> list = Stream.of(entry.getValue()).collect(Collectors.toList());
+                    map.put(entry.getKey(),list);
+                }
+            }
         }
         return map;
     }

@@ -11,7 +11,7 @@
   <groupId>io.github.hellfs</groupId>
   <artifactId>api-log-spring-boot-autoconfigure</artifactId>
   <packaging>jar</packaging>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 
   <name>api-log-spring-boot-autoconfigure</name>
   <url>https://github.com/HELLFS/api-log</url>
